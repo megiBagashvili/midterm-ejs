@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> <%= user.name %> details</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+    <h1>Details page</h1>
+
+    <a href="/">Back to home</a>
+    <h2>ID: <%= user.id %></h2>
+    <h2>Name: <%= user.name %></h2>
+    <h2>Age: <%= user.age %></h2>
+</body>
+</html>
