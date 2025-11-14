@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= user.name %> edit</title>
+    <title><%= expense.description %> edit</title>
 </head>
 <body>
     <h1>Edit page</h1>
     <a href="/">Back to home</a>
 
-    <form action="/api/users/<%= user.id %>/update" method="post">
-        <input value="<%= user.name %>" type="text" name="name" placeholder="enter user name" required>
-        <input value="<%= user.age %>" type="number" name="age" placeholder="enter user name" required>
-        <button>Edit user</button>
+    <form action="/api/expenses/<%= expense.id %>/update" method="post">
+        
+        <input value="<%= expense.description %>" type="text" name="description" placeholder="enter description" required>
+        <input value="<%= expense.amount %>" type="number" name="amount" placeholder="enter amount" required>
+        <input value="<%= expense.category %>" type="text" name="category" placeholder="enter category" required>
+        
+        <button>Edit expense</button>
     </form>
 </body>
 </html>
