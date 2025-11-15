@@ -13,7 +13,17 @@ app.get('/', async (req, res) => {
     try {
         const fileData = await fs.readFile(EXPENSES_FILE, 'utf-8');
         const expenses = JSON.parse(fileData);
-        res.render('pages/home.ejs', { expenses });
+
+        const { category } = req.query;
+        let filteredExpenses = expenses;
+
+        if (category) {
+            filteredExpenses = expenses.filter(e =>
+                e.category && e.category.toLowerCase().includes(category.toLowerCase())
+            );
+        }
+
+        res.render('pages/home.ejs', { expenses: filteredExpenses });
     } catch (err) {
         console.error("Error reading file for home page:", err.message);
         res.render('pages/home.ejs', { expenses: [] });
@@ -29,7 +39,7 @@ app.get('/expenses/:id', async (req, res) => {
         const id = Number(req.params.id);
         const fileData = await fs.readFile(EXPENSES_FILE, 'utf-8');
         const expenses = JSON.parse(fileData);
-        
+
         const expense = expenses.find(e => e.id === id);
         res.render('pages/details.ejs', { expense });
     } catch (err) {
@@ -48,7 +58,7 @@ app.get('/expenses/:id/details', async (req, res) => {
         res.render('pages/update.ejs', { expense });
     } catch (err) {
         console.error("Error reading file for update page:", err.message);
-        res.redirect('/'); 
+        res.redirect('/');
     }
 })
 
@@ -101,7 +111,7 @@ app.get('/api/expenses/:id/delete', async (req, res) => {
         const filteredExpenses = expenses.filter(e => e.id !== id);
 
         await fs.writeFile(EXPENSES_FILE, JSON.stringify(filteredExpenses, null, 2));
-        
+
         res.redirect('/');
     } catch (err) {
         console.error("Error deleting expense:", err.message);

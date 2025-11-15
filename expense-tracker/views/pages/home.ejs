@@ -10,28 +10,37 @@
 
 <body>
     <%- include('../partials/header.ejs') %>
-    <h1>Hello world</h1>
-    
-    <a href="/create">Create new Expense</a>
-    
-    <% expenses.forEach(e => { %>
-        <div class="userCard">
-            <h2>Description: <%= e.description %> </h2>
-            <h2>Amount: <%= e.amount %> </h2>
-            <h2>Category: <%= e.category %> </h2>
-            
-            <a href="/expenses/<%= e.id %>">
-                Show details
-            </a>
-            <a href="/expenses/<%= e.id %>/details">
-                Update
-            </a>
-            
-            <form action="/api/expenses/<%= e.id %>/delete" method="get">
-                <button>Delete</button>
-            </form>
-        </div>
-    <% }) %>
+        <h1>Hello world</h1>
+
+        <a href="/create">Create new Expense</a>
+
+        <form action="/" method="GET" style="margin-top: 15px; margin-bottom: 15px;">
+            <input type="text" name="category" placeholder="Filter by category">
+            <button type="submit">Search</button>
+        </form>
+
+        <% expenses.forEach(e=> { %>
+            <div class="userCard">
+                <h2>Description: <%= e.description %>
+                </h2>
+                <h2>Amount: <%= e.amount %>
+                </h2>
+                <h2>Category: <%= e.category %>
+                </h2>
+
+                <a href="/expenses/<%= e.id %>">
+                    Show details
+                </a>
+                <a href="/expenses/<%= e.id %>/details">
+                    Update
+                    A </a>
+
+                <form action="/api/expenses/<%= e.id %>/delete" method="get">
+                    <button>Delete</button>
+                </form>
+            </div>
+            <% }) %>
 
 </body>
+
 </html>
