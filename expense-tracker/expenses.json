@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": 1,
+    "description": "Groceries",
+    "amount": 150,
+    "category": "Food"
+  },
+  {
+    "id": 3,
+    "description": "Movie Tickets",
+    "amount": 25,
+    "category": "Entertainment"
+  }
+]
